@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+
+    <ion-item lines="none">
+      <!-- <ion-label>Awesome Label</ion-label> -->
+      <ion-searchbar class="ion-margin-top" placeholder="Buscar pregunta" inputmode="decimal" type="decimal"
+        (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
+
+      <ion-avatar slot="end">
+        <ion-badge>
+          <ion-text color="success">
+            420 <ion-icon name="star"></ion-icon>
+          </ion-text>
+        </ion-badge>
+        <img [src]="'https://lh3.googleusercontent.com/a-/AOh14GjSHaaFft00U1DKn9Az0L3ZsLp0mXsjWWup4bphHw'" />
+      </ion-avatar>
+    </ion-item>
+
+
+
+
+
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button>
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+</ion-content>
