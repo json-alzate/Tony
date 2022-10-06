@@ -7,9 +7,12 @@ import { createUid } from '@utils/create-uid';
 
 // Models
 import { Question } from '@models/question.model';
+import { Profile } from '@models/profile.model';
 
 // Services
 import { FirestoreService } from '@services/firestore.service';
+import { ProfileService } from '@services/profile.service';
+import { AuthService } from '@services/auth.service';
 
 
 // Components
@@ -22,18 +25,40 @@ import { NewQuestionComponent } from '@pages/questions/components/new-question/n
   styleUrls: ['./questions.page.scss'],
 })
 export class QuestionsPage implements OnInit {
+  loading = false;
+  profile: Profile;
 
   constructor(
     private toastController: ToastController,
     private modalController: ModalController,
-    private firestoreService: FirestoreService
-  ) { }
+    private firestoreService: FirestoreService,
+    private profileService: ProfileService,
+    private authService: AuthService
+  ) {
+    this.profileService.listenProfile.subscribe(profile => {
+      console.log('profile ', profile);
+
+      this.profile = profile;
+    });
+  }
 
   ngOnInit() {
   }
 
   onSearchChange(event) {
 
+  }
+
+  launchLoginGoogle() {
+    this.loading = true;
+    this.authService.loginGoogle().then(() => {
+      this.loading = false;
+    }).catch((err) => {
+      console.log(err);
+
+      this.loading = false;
+      this.errorToast();
+    });
   }
 
   async presentNewQuestionModal() {
@@ -66,15 +91,20 @@ export class QuestionsPage implements OnInit {
         });
         toast.present();
 
-      }).catch(async () => {
-        const toast = await this.toastController.create({
-          message: 'Algo salio mal!',
-          color: 'danger',
-          duration: 2000
-        });
-        toast.present();
+      }).catch(() => {
+        this.errorToast();
       });
     }
+  }
+
+
+  async errorToast() {
+    const toast = await this.toastController.create({
+      message: 'Algo salio mal!',
+      color: 'danger',
+      duration: 2000
+    });
+    toast.present();
   }
 
 

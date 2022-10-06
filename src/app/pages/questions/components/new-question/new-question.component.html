@@ -12,39 +12,45 @@
   </ion-card-header>
 
 
-  <ion-list>
-
-    <form [formGroup]="form">
+  <ion-card-content>
 
 
+    <ion-list>
 
-      <ion-item>
-        <ion-label position="floating">Titulo</ion-label>
-        <ion-input formControlName="tittle" type="text" placeholder="Titulo"></ion-input>
-      </ion-item>
+      <form [formGroup]="form">
 
 
-      <ion-item>
-        <ion-label position="floating">Detalle</ion-label>
-        <ion-textarea formControlName="description" rows="6" cols="25" placeholder="Descripción"></ion-textarea>
-      </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Titulo</ion-label>
+          <ion-input formControlName="tittle" type="text" placeholder="Titulo"></ion-input>
+        </ion-item>
 
 
-      <ion-item>
-        <ion-label position="floating">Etiquetas</ion-label>
-        <ion-select formControlName="tags" multiple="true" placeholder="Etiquetas">
-          <ion-select-option *ngFor="let tag of tags" [value]="tag">{{ tag }}</ion-select-option>
-        </ion-select>
-      </ion-item>
+        <ion-item>
+          <ion-label position="floating">Detalle</ion-label>
+          <ion-textarea formControlName="description" rows="6" cols="25" placeholder="Descripción"></ion-textarea>
+        </ion-item>
 
-    </form>
-  </ion-list>
+
+        <ion-item>
+          <ion-label position="floating">Etiquetas</ion-label>
+          <ion-select formControlName="tags" multiple="true" placeholder="Etiquetas">
+            <ion-select-option *ngFor="let tag of tags" [value]="tag">{{ tag }}</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+      </form>
+    </ion-list>
+
+  </ion-card-content>
+
 
 
   <ion-row class="ion-padding ion-margin-vertical">
     <ion-col size="6">
 
-      <img src="assets/new-question/undraw_photo_re_5blb.svg" alt="">
+      <img class="img-button" src="assets/new-question/undraw_images_re_0kll.svg" alt="">
       <ion-fab-button size="small" color="medium" class="fab-add-image">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>
@@ -52,7 +58,7 @@
 
     </ion-col>
     <ion-col size="6">
-      <img src="assets/new-question/undraw_photo_re_5blb.svg" alt="">
+      <img class="img-button" src="assets/new-question/undraw_images_re_0kll.svg" alt="">
       <ion-fab-button size="small" color="medium" class="fab-add-image">
         <ion-icon name="add"></ion-icon>
       </ion-fab-button>

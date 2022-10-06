@@ -2,23 +2,28 @@
   <ion-toolbar>
 
     <ion-item lines="none">
-      <!-- <ion-label>Awesome Label</ion-label> -->
-      <ion-searchbar class="ion-margin-top" placeholder="Buscar pregunta" inputmode="decimal" type="decimal"
+      <ion-searchbar mode="ios" class="ion-margin-top" placeholder="Buscar pregunta" inputmode="decimal" type="decimal"
         (ionChange)="onSearchChange($event)" [debounce]="250"></ion-searchbar>
 
-      <ion-avatar slot="end">
-        <ion-badge>
+
+      <ng-container *ngIf="profile">
+        <ion-avatar>
+          <img [src]="profile.avatarUrl" onerror="this.src='assets/person-circle-outline.svg'" />
+        </ion-avatar>
+
+        <ion-badge color="light">
           <ion-text color="success">
-            420 <ion-icon name="star"></ion-icon>
+            {{ profile.rating }}<ion-icon name="star"></ion-icon>
           </ion-text>
         </ion-badge>
-        <img [src]="'https://lh3.googleusercontent.com/a-/AOh14GjSHaaFft00U1DKn9Az0L3ZsLp0mXsjWWup4bphHw'" />
-      </ion-avatar>
+      </ng-container>
+
+      <ion-button *ngIf="!profile" (click)="launchLoginGoogle()" slot="end" expand="block" fill="clear" shape="round">
+        <ion-icon *ngIf="!loading" slot="icon-only" src="assets/logos/Google__G__Logo.svg"></ion-icon>
+        <ion-spinner *ngIf="loading" name="circles"></ion-spinner>
+      </ion-button>
+
     </ion-item>
-
-
-
-
 
 
   </ion-toolbar>
@@ -26,11 +31,13 @@
 
 <ion-content>
 
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="presentNewQuestionModal()">
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
+
 
 
 </ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button (click)="presentNewQuestionModal()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

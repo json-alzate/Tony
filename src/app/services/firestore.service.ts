@@ -6,6 +6,7 @@ import { ConnectionStatus, Network } from '@capacitor/network';
 /** Models **/
 import { Question } from '@models/question.model';
 import { Answer } from '@models/answer.model';
+import { Profile } from '@models/profile.model';
 
 /** Firebase Modules **/
 import { getApp } from 'firebase/app';
@@ -40,6 +41,7 @@ import {
 export class FirestoreService {
 
   private db: Firestore;
+  private profileDocRef: DocumentReference<DocumentData>;
 
   constructor() { }
 
@@ -76,6 +78,38 @@ export class FirestoreService {
 
   async enableNetwork() {
     await enableNetwork(this.db);
+  }
+
+  /**
+   * Get a user from Firestore
+   *
+   * @param uid
+   * @returns Promise<Agent>
+   */
+  async getProfile(uid: string): Promise<Profile> {
+
+    this.profileDocRef = doc(this.db, 'users', uid);
+    const docSnap = await getDoc(this.profileDocRef);
+    if (docSnap.exists()) {
+      return docSnap.data() as Profile;
+    } else {
+      console.log(`No user found with uid ${uid}`);
+      return null;
+    }
+
+  }
+
+
+  /**
+   * Crea un nuevo perfil
+   * Create a new profile
+   *
+   * @param profile
+   * @returns
+   */
+  async createProfile(profile: Profile): Promise<void> {
+    const docRef = await setDoc(doc(this.db, 'users', profile.uid), profile);
+    return docRef;
   }
 
 

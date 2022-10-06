@@ -1,6 +1,4 @@
-ion-content {
-    // --background: var(--ion-color-dark-contrast) url("/assets/new-question/undraw_floating_re_xtcj.svg") no-repeat bottom center / 100%;
-}
+ion-content {}
 
 
 ion-fab-button {
@@ -8,11 +6,17 @@ ion-fab-button {
 }
 
 ion-card-header {
-    margin-top: 8vh;
+    margin-top: 8.5vh;
 }
 
 .row-submit-button {
     margin-top: 6vh;
+}
+
+.img-button {
+    display: block;
+    margin: 0 auto;
+    max-width: 80%;
 }
 
 .fab-add-image {
