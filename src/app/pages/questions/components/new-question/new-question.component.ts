@@ -24,7 +24,7 @@ export class NewQuestionComponent implements OnInit {
   }
 
   get tittleField() {
-    return this.form.get('tittle');
+    return this.form.get('title');
   }
 
   get descriptionField() {
@@ -40,7 +40,7 @@ export class NewQuestionComponent implements OnInit {
 
   buildForm() {
     this.form = this.formBuilder.group({
-      tittle: ['', [Validators.required, Validators.maxLength(100)]],
+      title: ['', [Validators.required, Validators.maxLength(100)]],
       description: ['', [Validators.required, Validators.maxLength(1000)]],
       tags: []
     });

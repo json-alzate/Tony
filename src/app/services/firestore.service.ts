@@ -115,6 +115,8 @@ export class FirestoreService {
 
   /******* Questions */
   async addOneQuestion(question: Question): Promise<void> {
+    console.log(question);
+
     const docRef = await setDoc(doc(this.db, 'questions', question.uid), question);
     return docRef;
   }

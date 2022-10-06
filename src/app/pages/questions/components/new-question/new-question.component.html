@@ -1,4 +1,4 @@
-<ion-content>
+<ion-content class="ion-padding">
 
   <ion-fab vertical="top" horizontal="star">
     <ion-fab-button size="small" color="light" routerDirection="back" (click)="close()">
@@ -12,40 +12,33 @@
   </ion-card-header>
 
 
-  <ion-card-content>
+  <ion-list>
 
-
-    <ion-list>
-
-      <form [formGroup]="form">
+    <form [formGroup]="form">
 
 
 
-        <ion-item>
-          <ion-label position="floating">Titulo</ion-label>
-          <ion-input formControlName="tittle" type="text" placeholder="Titulo"></ion-input>
-        </ion-item>
+      <ion-item>
+        <ion-label position="floating">Titulo</ion-label>
+        <ion-input formControlName="title" type="text" placeholder="Titulo"></ion-input>
+      </ion-item>
 
 
-        <ion-item>
-          <ion-label position="floating">Detalle</ion-label>
-          <ion-textarea formControlName="description" rows="6" cols="25" placeholder="Descripción"></ion-textarea>
-        </ion-item>
+      <ion-item>
+        <ion-label position="floating">Detalle</ion-label>
+        <ion-textarea formControlName="description" rows="6" cols="25" placeholder="Descripción"></ion-textarea>
+      </ion-item>
 
 
-        <ion-item>
-          <ion-label position="floating">Etiquetas</ion-label>
-          <ion-select formControlName="tags" multiple="true" placeholder="Etiquetas">
-            <ion-select-option *ngFor="let tag of tags" [value]="tag">{{ tag }}</ion-select-option>
-          </ion-select>
-        </ion-item>
+      <ion-item>
+        <ion-label position="floating">Etiquetas</ion-label>
+        <ion-select formControlName="tags" multiple="true" placeholder="Etiquetas">
+          <ion-select-option *ngFor="let tag of tags" [value]="tag">{{ tag }}</ion-select-option>
+        </ion-select>
+      </ion-item>
 
-      </form>
-    </ion-list>
-
-  </ion-card-content>
-
-
+    </form>
+  </ion-list>
 
   <ion-row class="ion-padding ion-margin-vertical">
     <ion-col size="6">
@@ -65,6 +58,7 @@
     </ion-col>
 
   </ion-row>
+
 
   <ion-row class="row-submit-button">
     <ion-col offset="2" size="8" class="ion-padding">

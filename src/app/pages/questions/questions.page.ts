@@ -91,7 +91,9 @@ export class QuestionsPage implements OnInit {
         });
         toast.present();
 
-      }).catch(() => {
+      }).catch((err) => {
+        console.log(err);
+
         this.errorToast();
       });
     }
