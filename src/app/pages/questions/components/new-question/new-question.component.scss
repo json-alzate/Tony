@@ -1,5 +1,6 @@
-ion-content {}
-
+ion-content {
+    --background: var(--ion-color-dark-contrast) url("/assets/undraw_floating_re_xtcj.svg") no-repeat top center / 100%;
+}
 
 ion-fab-button {
     --box-shadow: none;
