@@ -41,20 +41,35 @@
   </ion-list>
 
   <ion-row class="ion-padding ion-margin-vertical">
-    <ion-col size="6">
+    <ion-col size="6" (click)="takePhoto(1)">
 
-      <img class="img-button" src="assets/new-question/undraw_images_re_0kll.svg" alt="">
-      <ion-fab-button size="small" color="medium" class="fab-add-image">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
+
+
+      <ng-container *ngIf="!photo1;else elsePhoto1">
+        <img class="img-button" src="assets/new-question/undraw_images_re_0kll.svg" alt="">
+        <ion-fab-button size="small" color="medium" class="fab-add-image">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ng-container>
+
+      <ng-template #elsePhoto1>
+        <img class="img-button" [src]="photo1" alt="">
+      </ng-template>
 
 
     </ion-col>
-    <ion-col size="6">
-      <img class="img-button" src="assets/new-question/undraw_images_re_0kll.svg" alt="">
-      <ion-fab-button size="small" color="medium" class="fab-add-image">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
+    <ion-col size="6" (click)="takePhoto(2)">
+
+      <ng-container *ngIf="!photo2;else elsePhoto2">
+        <img class="img-button" src="assets/new-question/undraw_images_re_0kll.svg" alt="">
+        <ion-fab-button size="small" color="medium" class="fab-add-image">
+          <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+      </ng-container>
+
+      <ng-template #elsePhoto2>
+        <img class="img-button" [src]="photo2" alt="">
+      </ng-template>
     </ion-col>
 
   </ion-row>
