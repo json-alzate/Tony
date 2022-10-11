@@ -13,6 +13,7 @@ import { Profile } from '@models/profile.model';
 import { FirestoreService } from '@services/firestore.service';
 import { ProfileService } from '@services/profile.service';
 import { AuthService } from '@services/auth.service';
+import { StorageService } from '@services/storage.service';
 
 
 // Components
@@ -33,7 +34,8 @@ export class QuestionsPage implements OnInit {
     private modalController: ModalController,
     private firestoreService: FirestoreService,
     private profileService: ProfileService,
-    private authService: AuthService
+    private authService: AuthService,
+    private storageService: StorageService
   ) {
     this.profileService.listenProfile.subscribe(profile => {
       console.log('profile ', profile);
@@ -81,6 +83,11 @@ export class QuestionsPage implements OnInit {
         uidProfile: '',
         photos: []
       };
+
+      if (data.data.photo1) {
+
+        this.storageService.uploadImageQuestion(newQuestion.uid, data.data.photo1);
+      }
 
       this.firestoreService.addOneQuestion(newQuestion).then(async () => {
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Camera, CameraResultType } from '@capacitor/camera';
-import { ModalController, AlertController } from '@ionic/angular';
+import { ModalController } from '@ionic/angular';
 
 
 @Component({
@@ -19,7 +19,6 @@ export class NewQuestionComponent implements OnInit {
   constructor(
     private modalController: ModalController,
     private formBuilder: FormBuilder,
-    private alertController: AlertController
   ) {
 
     this.buildForm();
@@ -67,17 +66,24 @@ export class NewQuestionComponent implements OnInit {
 
     switch (photoOption) {
       case 1:
-        this.photo1 = 'data:image/jpeg;base64,' + imageUrl;
+        this.photo1 = imageUrl;
         break;
       case 2:
-        this.photo2 = 'data:image/jpeg;base64,' + imageUrl;
+        this.photo2 = imageUrl;
         break;
     }
   }
 
   onSubmit() {
     if (this.form.valid) {
-      this.modalController.dismiss(this.form.value);
+      let toSave = this.form.value;
+      if (this.photo1) {
+        toSave = { ...toSave, photo1: this.photo1 };
+      }
+      if (this.photo2) {
+        toSave = { ...toSave, photo2: this.photo2 };
+      }
+      this.modalController.dismiss(toSave);
     } else {
       this.tittleField.markAsDirty();
       this.descriptionField.markAsDirty();

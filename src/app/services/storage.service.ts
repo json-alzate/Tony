@@ -2,21 +2,27 @@ import { Injectable } from '@angular/core';
 
 import { getStorage, ref, uploadString } from 'firebase/storage';
 
+import { getApp } from 'firebase/app';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class StorageService {
 
-  storage = getStorage();
+  storage;
   constructor() { }
 
+  init() {
+    this.storage = getStorage(getApp());
+  }
 
-  uploadImage() {
-    const storageRef = ref(this.storage, '');
+
+  uploadImageQuestion(uidQuestion: string, imageBase64: string) {
+    const storageRef = ref(this.storage, `questions/${uidQuestion}`);
     // Base64 formatted string
-    const message2 = '5b6p5Y+344GX44G+44GX44Gf77yB44GK44KB44Gn44Go44GG77yB';
-    uploadString(storageRef, message2, 'base64').then((snapshot) => {
-      console.log('Uploaded a base64 string!');
+    uploadString(storageRef, imageBase64, 'base64').then((snapshot) => {
+      console.log('Uploaded a base64 string! ', snapshot);
     });
   }
 

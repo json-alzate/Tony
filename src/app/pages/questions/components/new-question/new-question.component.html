@@ -53,7 +53,7 @@
       </ng-container>
 
       <ng-template #elsePhoto1>
-        <img class="img-button" [src]="photo1" alt="">
+        <img class="img-button" [src]="'data:image/jpeg;base64,'+photo1" alt="">
       </ng-template>
 
 
@@ -68,7 +68,7 @@
       </ng-container>
 
       <ng-template #elsePhoto2>
-        <img class="img-button" [src]="photo2" alt="">
+        <img class="img-button" [src]="'data:image/jpeg;base64,'+photo2" alt="">
       </ng-template>
     </ion-col>
 
