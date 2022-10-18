@@ -73,6 +73,7 @@ export class QuestionsPage implements OnInit {
 
     const data = await modal.onDidDismiss();
     if (data.data) {
+
       const newQuestion: Question = {
         uid: createUid(),
         date: new Date().getTime(),
@@ -85,8 +86,12 @@ export class QuestionsPage implements OnInit {
       };
 
       if (data.data.photo1) {
-
-        this.storageService.uploadImageQuestion(newQuestion.uid, data.data.photo1);
+        const urlImg1 = await this.storageService.uploadImageQuestion(newQuestion.uid, '1', data.data.photo1);
+        newQuestion.photos.push(urlImg1);
+      }
+      if (data.data.photo2) {
+        const urlImg2 = await this.storageService.uploadImageQuestion(newQuestion.uid, '2', data.data.photo2);
+        newQuestion.photos.push(urlImg2);
       }
 
       this.firestoreService.addOneQuestion(newQuestion).then(async () => {
@@ -100,7 +105,6 @@ export class QuestionsPage implements OnInit {
 
       }).catch((err) => {
         console.log(err);
-
         this.errorToast();
       });
     }
