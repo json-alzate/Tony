@@ -1,0 +1,52 @@
+<ion-content>
+
+  <div class="ion-padding">
+    <ion-segment value="pizza" mode="ios">
+      <ion-segment-button value="pizza">
+        <ion-label>Activas</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="pasta">
+        <ion-label>Historial</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+
+
+
+  <ion-list class="ion-margin-top">
+
+    <ion-item detail button>
+
+
+      <ion-thumbnail slot="start">
+        <img
+          src="https://firebasestorage.googleapis.com/v0/b/tony-5947f.appspot.com/o/questions%2Fkpp0noxnvps1tfra9l8vtsh%2F1.jpg?alt=media&token=2825d448-440d-489c-a1f7-397b7fa5f5e2" />
+      </ion-thumbnail>
+      <ion-label>
+        <h2> Nombre planta</h2>
+        <p>Descripcion</p>
+
+
+        <ion-text color="primary" class="ion-float-end">
+          <h6>Ak420 - Auto</h6>
+        </ion-text>
+
+      </ion-label>
+
+      <ion-note slot="end">
+        <ion-icon name="calendar-outline"></ion-icon> 104 días
+      </ion-note>
+
+    </ion-item>
+
+  </ion-list>
+
+
+</ion-content>
+
+<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab-button color="success" (click)="presentModalNewPlant()">
+    <ion-icon name="add"></ion-icon>
+  </ion-fab-button>
+</ion-fab>

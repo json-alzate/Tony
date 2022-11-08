@@ -1,0 +1,46 @@
+<ion-content class="ion-padding">
+
+
+  <ion-fab vertical="top" horizontal="star">
+    <ion-fab-button size="small" color="light" routerDirection="back" (click)="close()">
+      <ion-icon name="close"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+
+  <ion-card-header>
+    <ion-card-subtitle>Nueva Planta</ion-card-subtitle>
+  </ion-card-header>
+
+  <ion-list>
+
+    <form [formGroup]="form">
+
+
+
+      <ion-item>
+        <ion-label position="floating">Titulo</ion-label>
+        <ion-input formControlName="name" type="text" placeholder="Titulo"></ion-input>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label position="floating">Detalle</ion-label>
+        <ion-textarea formControlName="description" rows="6" cols="25" placeholder="Descripción"></ion-textarea>
+      </ion-item>
+
+
+
+    </form>
+  </ion-list>
+
+
+  <ion-row class="row-submit-button">
+    <ion-col offset="2" size="8" class="ion-padding">
+      <ion-button expand="block" color="success" shape="round" [disabled]="!form.valid" (click)="onSubmit()">
+        Guardar
+      </ion-button>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
