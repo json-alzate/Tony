@@ -1,9 +1,20 @@
-ion-fab-button {
+.fab-close {
     --box-shadow: none;
 }
 
-ion-card-header {
-    margin-top: 10.5vh;
+.cover {
+    margin-top: 8vh;
+    position: relative;
+    img {
+        display: block;
+        margin: 0 auto;
+        height: 20vh;
+    }
+    ion-fab-button {
+        position: absolute;
+        right: 24%;
+        bottom: 0px;
+    }
 }
 
 .row-submit-button {

@@ -2,15 +2,33 @@
 
 
   <ion-fab vertical="top" horizontal="star">
-    <ion-fab-button size="small" color="light" routerDirection="back" (click)="close()">
+    <ion-fab-button class="fab-close" size="small" color="light" routerDirection="back" (click)="close()">
       <ion-icon name="close"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <div class="cover">
+
+    <img *ngIf="!cover" src="assets/images/undraw_images_re_0kll.svg" alt="">
+    <img *ngIf="cover" [src]="cover" alt="">
+
+    <ion-note class="ion-text-center">
+      <h6>
+        <small>
+          Foto principal
+        </small>
+      </h6>
+    </ion-note>
+    <ion-fab-button size="small" color="dark" class="fab-add-image">
+      <ion-icon name="camera-outline"></ion-icon>
+    </ion-fab-button>
+  </div>
 
 
   <ion-card-header>
     <ion-card-subtitle>Nueva Planta</ion-card-subtitle>
   </ion-card-header>
+
 
   <ion-list>
 
@@ -19,16 +37,31 @@
 
 
       <ion-item>
-        <ion-label position="floating">Titulo</ion-label>
-        <ion-input formControlName="name" type="text" placeholder="Titulo"></ion-input>
+        <ion-label position="floating">Nombre</ion-label>
+        <ion-input formControlName="name" type="text"></ion-input>
       </ion-item>
 
+      <ion-item>
+        <ion-label position="floating">Tipo</ion-label>
+        <ion-select formControlName="type" placeholder="Tipo">
+          <ion-select-option *ngFor="let type of types" [value]="type">{{ type }}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Variedad</ion-label>
+        <ion-input formControlName="variety" type="text" placeholder="widow, critical..."></ion-input>
+      </ion-item>
 
       <ion-item>
         <ion-label position="floating">Detalle</ion-label>
-        <ion-textarea formControlName="description" rows="6" cols="25" placeholder="Descripción"></ion-textarea>
+        <ion-textarea formControlName="description" rows="2" cols="15"></ion-textarea>
       </ion-item>
 
+      <ion-button (click)="launchCalendar($event)" class="ion-float-right" fill="clear">
+        0 días
+        <ion-icon slot="end" name="calendar-outline"></ion-icon>
+      </ion-button>
 
 
     </form>

@@ -2,11 +2,11 @@ export interface Plant {
     uid: string;
     uidUser: string;
     name: string;
-    avatarPlantUrl?: string;
     description?: string;
     type: 'Auto' | 'Fem' | 'Regular';
     variety?: string;
     dateStart: number;
+    avatarPlantUrl?: string;
     dateEnd?: number;
     typeEnd?: 'dead' | 'harvested';
     descriptionEnd?: string;
