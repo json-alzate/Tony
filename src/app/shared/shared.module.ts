@@ -1,17 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
+import { IonicModule } from '@ionic/angular';
+
 import * as fromComponents from './components';
+import * as fromPipes from './pipes';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    IonicModule
+  ],
+  entryComponents: [
+    ...fromComponents.ENTRY_COMPONENTS
   ],
   declarations: [
-    ...fromComponents.COMPONENTS
+    ...fromComponents.COMPONENTS,
+    ...fromPipes.PIPES
   ],
   exports: [
-    fromComponents.COMPONENTS
+    ...fromComponents.COMPONENTS,
+    ...fromPipes.PIPES
   ]
 })
 export class SharedModule { }

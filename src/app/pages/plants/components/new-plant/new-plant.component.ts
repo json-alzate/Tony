@@ -1,7 +1,7 @@
 //core and third party libraries
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ModalController } from '@ionic/angular';
+import { ModalController, PopoverController } from '@ionic/angular';
 
 // rxjs
 
@@ -16,6 +16,7 @@ import { ModalController } from '@ionic/angular';
 // services
 
 // components
+import { CalendarComponent } from '@shared/components/calendar/calendar.component';
 
 
 @Component({
@@ -29,10 +30,11 @@ export class NewPlantComponent implements OnInit {
   types = ['Automática', 'Feminizada', 'Regular'].sort();
 
   cover: string;
-
+  dateSelected = new Date().getTime();
 
   constructor(
     private modalController: ModalController,
+    private popoverController: PopoverController,
     private formBuilder: FormBuilder
   ) {
     this.buildForm();
@@ -53,8 +55,22 @@ export class NewPlantComponent implements OnInit {
     });
   }
 
-  launchCalendar(event: any) {
-    console.log('launchCalendar');
+
+
+  async launchCalendar(ev: any) {
+    const popover = await this.popoverController.create({
+      component: CalendarComponent,
+      componentProps: { setObjetCurrentDate: this.dateSelected },
+      event: ev,
+      translucent: false
+    });
+
+    await popover.present();
+
+    const { data } = await popover.onWillDismiss();
+    if (data && data.dateFormatted) {
+      this.dateSelected = data.dateFormatted;
+    }
   }
 
 

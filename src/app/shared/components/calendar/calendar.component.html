@@ -1,3 +1,13 @@
-<p>
-  calendar works!
-</p>
+<ion-content>
+  <ng-container *ngIf="valueDateTime">
+
+    <ion-datetime [value]="valueDateTime" #dateElement presentation="date" first-day-of-week="1"
+      (ionChange)="formatDate(dateElement.value)">
+    </ion-datetime>
+
+    <ion-button expand="block" fill="clear" (click)="choose()">
+      Elegir
+    </ion-button>
+
+  </ng-container>
+</ion-content>

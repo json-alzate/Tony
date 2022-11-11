@@ -4,6 +4,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { SharedModule } from '@shared/shared.module';
+
 import { PlantsPageRoutingModule } from './plants-routing.module';
 
 import { PlantsPage } from './plants.page';
@@ -15,7 +17,8 @@ import * as fromComponents from './components/';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    PlantsPageRoutingModule
+    PlantsPageRoutingModule,
+    SharedModule
   ],
   declarations: [
     PlantsPage,

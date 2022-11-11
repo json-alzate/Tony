@@ -43,7 +43,7 @@
 
       <ion-item>
         <ion-label position="floating">Tipo</ion-label>
-        <ion-select formControlName="type" placeholder="Tipo">
+        <ion-select formControlName="type">
           <ion-select-option *ngFor="let type of types" [value]="type">{{ type }}</ion-select-option>
         </ion-select>
       </ion-item>
@@ -58,10 +58,19 @@
         <ion-textarea formControlName="description" rows="2" cols="15"></ion-textarea>
       </ion-item>
 
-      <ion-button (click)="launchCalendar($event)" class="ion-float-right" fill="clear">
-        0 días
-        <ion-icon slot="end" name="calendar-outline"></ion-icon>
-      </ion-button>
+      <div class="ion-float-right div-calendar">
+        <ion-text color="primary">
+          <p class="p-date">
+            <small style="display: block;">
+              {{ dateSelected | date: 'dd/MM/yyyy' }}
+            </small>
+          </p>
+        </ion-text>
+        <ion-button (click)="launchCalendar($event)" fill="clear">
+          {{ dateSelected | daysAgo }} días
+          <ion-icon slot="end" name="calendar-outline"></ion-icon>
+        </ion-button>
+      </div>
 
 
     </form>
