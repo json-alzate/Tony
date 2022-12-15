@@ -9,8 +9,8 @@
 
   <div class="cover">
 
-    <img *ngIf="!cover" src="assets/images/undraw_images_re_0kll.svg" alt="">
-    <img *ngIf="cover" [src]="cover" alt="">
+    <img *ngIf="!cover" src="assets/images/undraw_images_re_0kll.svg" alt="cover" (click)="takePhoto()">
+    <img *ngIf="cover" [src]="'data:image/jpeg;base64,'+cover" alt="cover">
 
     <ion-note class="ion-text-center">
       <h6>
@@ -19,7 +19,7 @@
         </small>
       </h6>
     </ion-note>
-    <ion-fab-button size="small" color="dark" class="fab-add-image">
+    <ion-fab-button size="small" color="dark" class="fab-add-image" (click)="takePhoto()">
       <ion-icon name="camera-outline"></ion-icon>
     </ion-fab-button>
   </div>

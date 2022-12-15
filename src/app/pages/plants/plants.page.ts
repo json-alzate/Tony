@@ -41,8 +41,7 @@ export class PlantsPage implements OnInit {
 
   async presentModalNewPlant() {
     const modal = await this.modalController.create({
-      component: NewPlantComponent,
-      componentProps: { value: 123 }
+      component: NewPlantComponent
     });
 
     await modal.present();

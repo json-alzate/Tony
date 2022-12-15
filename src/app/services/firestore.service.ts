@@ -7,6 +7,7 @@ import { ConnectionStatus, Network } from '@capacitor/network';
 import { Question } from '@models/question.model';
 import { Answer } from '@models/answer.model';
 import { Profile } from '@models/profile.model';
+import { Plant } from '@models/plant.model';
 
 /** Firebase Modules **/
 import { getApp } from 'firebase/app';
@@ -161,6 +162,32 @@ export class FirestoreService {
   }
 
 
+
+  /******* Plants */
+
+  // get all plants of a user
+  async getAllPlantsByUser(uidUser: string): Promise<Plant[]> {
+    const plants: Plant[] = [];
+    const q = query(collection(this.db, 'plants'), where
+      ('uidUser', '==', uidUser));
+    const querySnapshot = await getDocs(q);
+
+    querySnapshot.forEach((document) => {
+      const plantToAdd = document.data() as Plant;
+      plantToAdd.uid = document.id;
+      plants.push(plantToAdd);
+    });
+
+    return plants;
+
+  }
+
+
+  //save one plant
+  async addOnePlant(plant: Plant): Promise<void> {
+    const docRef = await setDoc(doc(this.db, 'plants', plant.uid), plant);
+    return docRef;
+  }
 
 
 }
