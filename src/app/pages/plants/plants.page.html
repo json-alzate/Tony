@@ -1,51 +1,103 @@
 <ion-content>
 
-  <div class="ion-padding">
-    <ion-segment value="pizza" mode="ios">
-      <ion-segment-button value="pizza">
-        <ion-label>Activas</ion-label>
-      </ion-segment-button>
-      <ion-segment-button value="pasta">
-        <ion-label>Historial</ion-label>
-      </ion-segment-button>
-    </ion-segment>
-  </div>
+  <ng-container *ngIf="!profile; else elseTemplate">
+
+    <div class="ion-padding">
+
+      <ion-text color="dark">
+        <h1>Inicia sesión</h1>
+        <p>Para ver o adicionar plantas, necesitas iniciar sesión</p>
+      </ion-text>
+
+
+      <!-- <ion-fab vertical="center" horizontal="center" slot="fixed"> -->
+      <ion-fab-button class="btn-login-google pulse" color="light" (click)="launchLoginGoogle()">
+        <ion-icon src="assets/logos/Google__G__Logo.svg"></ion-icon>
+        <ion-spinner *ngIf="loading" name="circles"></ion-spinner>
+      </ion-fab-button>
+      <!-- </ion-fab> -->
+
+    </div>
+
+
+
+  </ng-container>
+  <ng-template #elseTemplate>
+
+
+    <ion-toolbar>
+      <ion-title>
+
+        <ion-segment value="pizza" mode="ios">
+          <ion-segment-button value="pizza">
+            <ion-label>Activas</ion-label>
+          </ion-segment-button>
+          <ion-segment-button value="pasta">
+            <ion-label>Historial</ion-label>
+          </ion-segment-button>
+        </ion-segment>
+      </ion-title>
+
+      <ion-avatar slot="end" class="avatar-profile ion-margin-horizontal">
+        <img [src]="profile.avatarUrl" />
+      </ion-avatar>
+    </ion-toolbar>
+
+    <!-- <div class="ion-padding">
+      <ion-segment value="pizza" mode="ios">
+        <ion-segment-button value="pizza">
+          <ion-label>Activas</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="pasta">
+          <ion-label>Historial</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+      <ion-avatar class="ion-float-rigth">
+        <img [src]="profile.avatarUrl" />
+      </ion-avatar>
+    </div> -->
 
 
 
 
-  <ion-list class="ion-margin-top">
-
-    <ion-item detail button>
 
 
-      <ion-thumbnail slot="start">
-        <img
-          src="https://firebasestorage.googleapis.com/v0/b/tony-5947f.appspot.com/o/questions%2Fkpp0noxnvps1tfra9l8vtsh%2F1.jpg?alt=media&token=2825d448-440d-489c-a1f7-397b7fa5f5e2" />
-      </ion-thumbnail>
-      <ion-label>
-        <h2> Nombre planta</h2>
-        <p>Descripcion</p>
+
+    <ion-list class="ion-margin-top">
+
+      <ion-item detail button>
 
 
-        <ion-text color="primary" class="ion-float-end">
-          <h6>Ak420 - Auto</h6>
-        </ion-text>
+        <ion-thumbnail slot="start">
+          <img
+            src="https://firebasestorage.googleapis.com/v0/b/tony-5947f.appspot.com/o/questions%2Fkpp0noxnvps1tfra9l8vtsh%2F1.jpg?alt=media&token=2825d448-440d-489c-a1f7-397b7fa5f5e2" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2> Nombre planta</h2>
+          <p>Descripcion</p>
 
-      </ion-label>
 
-      <ion-note slot="end">
-        <ion-icon name="calendar-outline"></ion-icon> 104 días
-      </ion-note>
+          <ion-text color="primary" class="ion-float-end">
+            <h6>Ak420 - Auto</h6>
+          </ion-text>
 
-    </ion-item>
+        </ion-label>
 
-  </ion-list>
+        <ion-note slot="end">
+          <ion-icon name="calendar-outline"></ion-icon> 104 días
+        </ion-note>
+
+      </ion-item>
+
+    </ion-list>
+
+  </ng-template>
+
 
 
 </ion-content>
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+<ion-fab *ngIf="profile" vertical="bottom" horizontal="end" slot="fixed">
   <ion-fab-button color="success" (click)="presentModalNewPlant()">
     <ion-icon name="add"></ion-icon>
   </ion-fab-button>

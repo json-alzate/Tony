@@ -184,9 +184,9 @@ export class FirestoreService {
 
 
   //save one plant
-  async addOnePlant(plant: Plant): Promise<void> {
-    const docRef = await setDoc(doc(this.db, 'plants', plant.uid), plant);
-    return docRef;
+  async addOnePlant(plant: Plant): Promise<string> {
+    const docRef = await addDoc(collection(this.db, 'plants'), plant);
+    return docRef.id;
   }
 
 

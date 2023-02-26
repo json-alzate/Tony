@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 
 import * as fromComponents from './components';
 import * as fromPipes from './pipes';
+import * as fromDirectives from './directives';
 
 @NgModule({
   imports: [
@@ -16,11 +17,13 @@ import * as fromPipes from './pipes';
   ],
   declarations: [
     ...fromComponents.COMPONENTS,
-    ...fromPipes.PIPES
+    ...fromPipes.PIPES,
+    ...fromDirectives.DIRECTIVES
   ],
   exports: [
     ...fromComponents.COMPONENTS,
-    ...fromPipes.PIPES
+    ...fromPipes.PIPES,
+    ...fromDirectives.DIRECTIVES
   ]
 })
 export class SharedModule { }
